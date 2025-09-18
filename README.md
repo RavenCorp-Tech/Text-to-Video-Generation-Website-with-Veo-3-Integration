@@ -14,18 +14,24 @@ A web application that allows users to generate videos from text descriptions us
 ## Project Structure
 
 ```
+text-to-video-app/
 ├── index.html
+├── pages/
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── subscription.html
 ├── css/
-│   └── styles.css
+│   ├── style.css
+│   ├── responsive.css
 ├── js/
 │   ├── app.js
 │   ├── auth.js
+│   ├── api.js
 │   ├── subscription.js
-│   ├── videoGeneration.js
-│   └── utils.js
 ├── assets/
-│   └── logo.svg
-└── README.md
+│   ├── images/
+│   ├── icons/
 ```
 
 ## Getting Started
