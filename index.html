@@ -3,179 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VeoCreator - AI Text to Video Generation</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>VeoCreator - Text to Video AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <div class="logo">
-                <h1>Veo<span>Creator</span></h1>
+                <img src="assets/logo.svg" alt="VeoCreator Logo">
+                <h1>VeoCreator</h1>
             </div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#examples">Examples</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="./pages/login.html" class="login-btn">Login</a></li>
-                <li><a href="./pages/register.html" class="register-btn">Register</a></li>
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="auth-buttons">
+                <button id="loginBtn" class="btn btn-outline">Log In</button>
+                <button id="signupBtn" class="btn btn-primary">Sign Up</button>
+                <div id="userProfile" class="user-profile hidden">
+                    <img src="assets/default-avatar.png" alt="User" id="userAvatar">
+                    <span id="userName">User</span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
             <div class="hero-content">
-                <h1>Transform Text into Stunning Videos</h1>
-                <p>Harness the power of Veo AI models to create professional videos in minutes</p>
-                <div class="cta-buttons">
-                    <a href="./pages/register.html" class="cta-primary">Get Started</a>
-                    <a href="#examples" class="cta-secondary">See Examples</a>
-                </div>
+                <h1>Transform Text Into Stunning Videos with AI</h1>
+                <p>Powered by Google's Veo 3 Models for high-quality video generation from simple text prompts</p>
+                <button id="getStartedBtn" class="btn btn-cta">Get Started</button>
             </div>
             <div class="hero-image">
-                <img src="./assets/images/hero-image.png" alt="AI Video Generation Illustration">
+                <img src="assets/hero-image.png" alt="AI Video Generation">
             </div>
         </section>
 
+        <!-- Features Section -->
         <section id="features" class="features">
-            <h2>Features</h2>
-            <div class="feature-cards">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
                 <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
                     <h3>Veo 3 Fast</h3>
-                    <p>Generate videos quickly with our standard quality model. Perfect for social media content.</p>
-                    <p class="limit">Up to 4 videos per week</p>
+                    <p>Generate videos quickly with our fast mode. Perfect for rapid prototyping.</p>
+                    <p class="limit-info">Limit: 4 videos per week</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-star"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
                     <h3>Veo 3 Quality</h3>
-                    <p>Premium quality video generation with enhanced details and superior visual fidelity.</p>
-                    <p class="limit">1 video per week</p>
+                    <p>Create premium, high-definition videos with enhanced detail and realism.</p>
+                    <p class="limit-info">Limit: 1 video per week</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-magic"></i>
-                    <h3>Creative Control</h3>
-                    <p>Customize your video with detailed prompts, style adjustments, and more.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Credit System</h3>
+                    <p>950 credits with each subscription. Manage your usage efficiently.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3>Weekly Resets</h3>
+                    <p>Limits reset weekly. Track your remaining generations in your dashboard.</p>
                 </div>
             </div>
         </section>
 
+        <!-- Pricing Section -->
         <section id="pricing" class="pricing">
-            <h2>Simple Pricing</h2>
+            <h2 class="section-title">Simple Pricing</h2>
             <div class="pricing-card">
-                <h3>Premium Subscription</h3>
+                <h3>Premium Plan</h3>
                 <div class="price">
                     <span class="currency">₹</span>
                     <span class="amount">99</span>
                     <span class="period">/month</span>
                 </div>
+                <p class="price-note">Price shown in INR. Converts to local currency.</p>
                 <ul class="benefits">
-                    <li>950 credits monthly</li>
-                    <li>Up to 4 Veo 3 Fast videos per week</li>
-                    <li>1 Veo 3 Quality video per week</li>
-                    <li>Access to all upcoming features</li>
-                    <li>Priority support</li>
+                    <li><i class="fas fa-check"></i> 950 Credits Monthly</li>
+                    <li><i class="fas fa-check"></i> Up to 4 Veo 3 Fast videos weekly</li>
+                    <li><i class="fas fa-check"></i> 1 Veo 3 Quality video weekly</li>
+                    <li><i class="fas fa-check"></i> Download in multiple formats</li>
+                    <li><i class="fas fa-check"></i> Priority customer support</li>
                 </ul>
-                <a href="./pages/register.html" class="subscribe-btn">Subscribe Now</a>
-                <p class="pricing-note">* Price shown in your local currency</p>
+                <button id="subscribeBtn" class="btn btn-primary">Subscribe Now</button>
             </div>
         </section>
 
-        <section id="examples" class="examples">
-            <h2>Example Videos</h2>
-            <div class="example-videos">
-                <div class="example">
-                    <div class="video-container">
-                        <video controls>
-                            <source src="./assets/videos/example1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+        <!-- Video Creation Section (Visible only after login) -->
+        <section id="createVideo" class="create-video hidden">
+            <h2 class="section-title">Create Your Video</h2>
+            <div class="creator-panel">
+                <div class="input-section">
+                    <div class="text-prompt">
+                        <label for="promptText">Enter your prompt:</label>
+                        <textarea id="promptText" placeholder="Describe the video you want to create..." rows="5"></textarea>
+                        <p class="char-counter"><span id="charCount">0</span>/500 characters</p>
                     </div>
-                    <div class="prompt">
-                        <h4>Prompt:</h4>
-                        <p>"A serene forest scene with sunlight filtering through the trees"</p>
+                    <div class="model-selection">
+                        <h3>Select Model:</h3>
+                        <div class="model-options">
+                            <div class="model-option">
+                                <input type="radio" id="veoFast" name="model" value="veo3-fast" checked>
+                                <label for="veoFast">
+                                    <h4>Veo 3 Fast</h4>
+                                    <p>Faster generation, good quality</p>
+                                    <p class="remaining">Remaining this week: <span id="fastRemaining">4</span></p>
+                                </label>
+                            </div>
+                            <div class="model-option">
+                                <input type="radio" id="veoQuality" name="model" value="veo3-quality">
+                                <label for="veoQuality">
+                                    <h4>Veo 3 Quality</h4>
+                                    <p>Higher quality, longer processing</p>
+                                    <p class="remaining">Remaining this week: <span id="qualityRemaining">1</span></p>
+                                </label>
+                            </div>
+                        </div>
                     </div>
+                    <div class="credit-info">
+                        <p>Your credits: <span id="userCredits">950</span></p>
+                        <p>This generation will cost: <span id="genCost">100</span> credits</p>
+                    </div>
+                    <button id="generateBtn" class="btn btn-cta">Generate Video</button>
                 </div>
-                <div class="example">
-                    <div class="video-container">
-                        <video controls>
-                            <source src="./assets/videos/example2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                <div class="preview-section">
+                    <div class="preview-container">
+                        <div id="previewPlaceholder" class="preview-placeholder">
+                            <i class="fas fa-film"></i>
+                            <p>Your video will appear here</p>
+                        </div>
+                        <video id="videoPreview" controls class="hidden"></video>
                     </div>
-                    <div class="prompt">
-                        <h4>Prompt:</h4>
-                        <p>"Futuristic cityscape with flying vehicles and neon lights"</p>
+                    <div class="loading-indicator hidden" id="loadingIndicator">
+                        <div class="spinner"></div>
+                        <p>Generating your video...</p>
+                        <p class="estimated-time">Estimated time: <span id="estimatedTime">30-60</span> seconds</p>
                     </div>
-                </div>
-                <div class="example">
-                    <div class="video-container">
-                        <video controls>
-                            <source src="./assets/videos/example3.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="prompt">
-                        <h4>Prompt:</h4>
-                        <p>"Ocean waves crashing on a beautiful sunset beach"</p>
+                    <div class="video-actions hidden" id="videoActions">
+                        <button class="btn btn-outline" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-outline" id="shareBtn"><i class="fas fa-share"></i> Share</button>
+                        <button class="btn btn-outline" id="regenerateBtn"><i class="fas fa-sync"></i> Regenerate</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about">
-            <h2>About VeoCreator</h2>
-            <p>VeoCreator harnesses the power of Google's cutting-edge Veo AI models through the Flow platform to bring professional-quality video generation to everyone. Our service provides an easy-to-use interface for text-to-video generation, allowing you to create stunning videos without any technical expertise.</p>
+        <!-- User Dashboard Section (Visible only after login) -->
+        <section id="dashboard" class="dashboard hidden">
+            <h2 class="section-title">Your Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Usage Statistics</h3>
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <p class="stat-title">Veo 3 Fast</p>
+                            <p class="stat-value"><span id="dashFastUsed">0</span>/<span id="dashFastLimit">4</span></p>
+                            <div class="progress-bar">
+                                <div class="progress" id="fastProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-title">Veo 3 Quality</p>
+                            <p class="stat-value"><span id="dashQualityUsed">0</span>/<span id="dashQualityLimit">1</span></p>
+                            <div class="progress-bar">
+                                <div class="progress" id="qualityProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-title">Credits Remaining</p>
+                            <p class="stat-value"><span id="dashCredits">950</span></p>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-title">Reset In</p>
+                            <p class="stat-value"><span id="resetTime">3 days</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Recent Creations</h3>
+                    <div class="recent-videos" id="recentVideos">
+                        <p class="no-videos">No videos created yet</p>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Subscription Details</h3>
+                    <div class="subscription-info">
+                        <p>Status: <span id="subStatus" class="active">Active</span></p>
+                        <p>Plan: <span id="subPlan">Premium</span></p>
+                        <p>Next billing date: <span id="nextBilling">Oct 18, 2025</span></p>
+                        <button id="manageSub" class="btn btn-outline">Manage Subscription</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery">
+            <h2 class="section-title">Inspiration Gallery</h2>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be dynamically added here -->
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <h3>Veo<span>Creator</span></h3>
-                <p>Text to Video AI Generation</p>
+                <img src="assets/logo-white.svg" alt="VeoCreator Logo">
+                <h3>VeoCreator</h3>
             </div>
             <div class="footer-links">
                 <div class="link-group">
-                    <h4>Navigation</h4>
+                    <h4>Product</h4>
                     <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#examples">Examples</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Status</a></li>
                     </ul>
                 </div>
                 <div class="link-group">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Copyright</a></li>
-                    </ul>
-                </div>
-                <div class="link-group">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="copyright">
+        <div class="footer-bottom">
             <p>&copy; 2025 VeoCreator. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
     </footer>
 
-    <script src="./js/app.js"></script>
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="closeAuthModal">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Log In</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            <div id="loginForm" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••">
+                </div>
+                <div class="form-action">
+                    <button id="doLoginBtn" class="btn btn-primary">Log In</button>
+                </div>
+                <p class="auth-switch">Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+            </div>
+            <div id="signupForm" class="auth-form">
+                <h2>Create Account</h2>
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="••••••••">
+                </div>
+                <div class="form-action">
+                    <button id="doSignupBtn" class="btn btn-primary">Create Account</button>
+                </div>
+                <p class="auth-switch">Already have an account? <a href="#" id="switchToLogin">Log in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Modal -->
+    <div id="subscriptionModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="closeSubModal">&times;</span>
+            <h2>Complete Your Subscription</h2>
+            <div class="subscription-details">
+                <h3>Premium Plan</h3>
+                <p class="sub-price">₹99/month</p>
+                <ul class="sub-features">
+                    <li><i class="fas fa-check"></i> 950 Credits Monthly</li>
+                    <li><i class="fas fa-check"></i> Up to 4 Veo 3 Fast videos weekly</li>
+                    <li><i class="fas fa-check"></i> 1 Veo 3 Quality video weekly</li>
+                </ul>
+            </div>
+            <div class="payment-form">
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                </div>
+                <div class="card-details">
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123">
+                    </div>
+                </div>
+                <button id="completePaymentBtn" class="btn btn-primary">Subscribe Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="auth.js"></script>
+    <script src="api.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
