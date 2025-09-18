@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VeoCreator</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <h2>Veo<span>Creator</span></h2>
+                <button class="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <img src="../assets/images/avatar-placeholder.png" alt="User Avatar" id="userAvatar">
+                </div>
+                <div class="user-details">
+                    <h3 id="userName">User Name</h3>
+                    <p id="userEmail">user@example.com</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard-home">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#create-video">
+                            <i class="fas fa-video"></i>
+                            <span>Create Video</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#my-videos">
+                            <i class="fas fa-film"></i>
+                            <span>My Videos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#subscription">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Subscription</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search videos...">
+                </div>
+                <div class="header-actions">
+                    <div class="credit-counter">
+                        <i class="fas fa-coins"></i>
+                        <span id="creditBalance">950</span> credits
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <section id="dashboard-home" class="dashboard-section active">
+                    <h2>Dashboard</h2>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Veo 3 Fast</h3>
+                                <p><span id="veoFastCount">0</span>/4 videos this week</p>
+                                <div class="progress-bar">
+                                    <div class="progress" id="veoFastProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon quality">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Veo 3 Quality</h3>
+                                <p><span id="veoQualityCount">0</span>/1 video this week</p>
+                                <div class="progress-bar">
+                                    <div class="progress" id="veoQualityProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon subscription">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Subscription</h3>
+                                <p>Active until: <span id="subscriptionDate">2025-10-18</span></p>
+                                <a href="#subscription" class="manage-btn">Manage</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-videos">
+                        <div class="section-header">
+                            <h3>Recent Videos</h3>
+                            <a href="#my-videos" class="view-all">View All</a>
+                        </div>
+                        <div class="video-grid" id="recentVideosGrid">
+                            <div class="empty-state">
+                                <i class="fas fa-film"></i>
+                                <p>No videos yet. Create your first video!</p>
+                                <a href="#create-video" class="create-first-btn">Create Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="create-video" class="dashboard-section">
+                    <h2>Create New Video</h2>
+                    
+                    <div class="create-video-container">
+                        <form id="createVideoForm">
+                            <div class="form-group">
+                                <label for="videoTitle">Video Title</label>
+                                <input type="text" id="videoTitle" name="videoTitle" placeholder="Enter a title for your video" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="videoPrompt">Text Prompt</label>
+                                <textarea id="videoPrompt" name="videoPrompt" placeholder="Describe what you want in your video..." rows="4" required></textarea>
+                                <div class="character-counter">
+                                    <span id="charCount">0</span>/500
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label>Video Model</label>
+                                    <div class="model-selector">
+                                        <div class="model-option">
+                                            <input type="radio" id="veoFast" name="videoModel" value="veo3-fast" checked>
+                                            <label for="veoFast">
+                                                <span class="model-name">Veo 3 Fast</span>
+                                                <span class="model-info">Quick generation, standard quality</span>
+                                                <span class="model-cost">150 credits</span>
+                                            </label>
+                                        </div>
+                                        <div class="model-option">
+                                            <input type="radio" id="veoQuality" name="videoModel" value="veo3-quality">
+                                            <label for="veoQuality">
+                                                <span class="model-name">Veo 3 Quality</span>
+                                                <span class="model-info">High fidelity, longer generation time</span>
+                                                <span class="model-cost">350 credits</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group half">
+                                    <label for="videoDuration">Duration</label>
+                                    <select id="videoDuration" name="videoDuration">
+                                        <option value="5">5 seconds</option>
+                                        <option value="10">10 seconds</option>
+                                        <option value="15" selected>15 seconds</option>
+                                        <option value="30">30 seconds (+ 50 credits)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Style Guidance (Optional)</label>
+                                <div class="style-tags">
+                                    <div class="style-tag">
+                                        <input type="checkbox" id="style1" name="styles" value="cinematic">
+                                        <label for="style1">Cinematic</label>
+                                    </div>
+                                    <div class="style-tag">
+                                        <input type="checkbox" id="style2" name="styles" value="realistic">
+                                        <label for="style2">Realistic</label>
+                                    </div>
+                                    <div class="style-tag">
+                                        <input type="checkbox" id="style3" name="styles" value="animation">
+                                        <label for="style3">Animation</label>
+                                    </div>
+                                    <div class="style-tag">
+                                        <input type="checkbox" id="style4" name="styles" value="abstract">
+                                        <label for="style4">Abstract</label>
+                                    </div>
+                                    <div class="style-tag">
+                                        <input type="checkbox" id="style5" name="styles" value="artistic">
+                                        <label for="style5">Artistic</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <div class="credit-check">
+                                    <p>Cost: <span id="creditCost">150</span> credits</p>
+                                    <p>Your balance: <span id="creditBalanceDisplay">950</span> credits</p>
+                                </div>
+                                <button type="submit" id="generateBtn" class="generate-btn">
+                                    <i class="fas fa-magic"></i>
+                                    Generate Video
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section id="my-videos" class="dashboard-section">
+                    <h2>My Videos</h2>
+                    
+                    <div class="video-filters">
+                        <div class="search-filter">
+                            <input type="text" placeholder="Search my videos...">
+                        </div>
+                        <div class="sort-filter">
+                            <label for="sortVideos">Sort by:</label>
+                            <select id="sortVideos">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="title">Title (A-Z)</option>
+                            </select>
+                        </div>
+                        <div class="model-filter">
+                            <label for="filterModel">Model:</label>
+                            <select id="filterModel">
+                                <option value="all">All Models</option>
+                                <option value="veo3-fast">Veo 3 Fast</option>
+                                <option value="veo3-quality">Veo 3 Quality</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="video-gallery" id="videosGallery">
+                        <div class="empty-state">
+                            <i class="fas fa-film"></i>
+                            <p>You haven't created any videos yet</p>
+                            <a href="#create-video" class="create-first-btn">Create Your First Video</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="subscription" class="dashboard-section">
+                    <h2>Subscription Management</h2>
+                    
+                    <div class="subscription-info">
+                        <div class="subscription-status active">
+                            <div class="status-header">
+                                <h3>Current Plan</h3>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                            <div class="plan-details">
+                                <h4>Premium Subscription</h4>
+                                <p class="price">₹99/month</p>
+                                <ul class="plan-features">
+                                    <li><i class="fas fa-check"></i> 950 credits monthly</li>
+                                    <li><i class="fas fa-check"></i> Up to 4 Veo 3 Fast videos per week</li>
+                                    <li><i class="fas fa-check"></i> 1 Veo 3 Quality video per week</li>
+                                    <li><i class="fas fa-check"></i> Access to all upcoming features</li>
+                                    <li><i class="fas fa-check"></i> Priority support</li>
+                                </ul>
+                            </div>
+                            <div class="subscription-actions">
+                                <p class="next-billing">Next billing date: <span id="nextBillingDate">2025-10-18</span></p>
+                                <button class="cancel-btn">Cancel Subscription</button>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-history">
+                            <h3>Payment History</h3>
+                            <div class="history-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2025-09-18</td>
+                                            <td>Premium Subscription - Monthly</td>
+                                            <td>₹99.00</td>
+                                            <td><span class="status success">Paid</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="settings" class="dashboard-section">
+                    <h2>Account Settings</h2>
+                    
+                    <div class="settings-container">
+                        <div class="settings-card">
+                            <h3>Profile Information</h3>
+                            <form id="profileForm">
+                                <div class="form-row">
+                                    <div class="form-group half">
+                                        <label for="settingsName">Full Name</label>
+                                        <input type="text" id="settingsName" name="name" value="User Name">
+                                    </div>
+                                    <div class="form-group half">
+                                        <label for="settingsEmail">Email Address</label>
+                                        <input type="email" id="settingsEmail" name="email" value="user@example.com" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsBio">Bio</label>
+                                    <textarea id="settingsBio" name="bio" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="settings-save-btn">Save Changes</button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Password</h3>
+                            <form id="passwordForm">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" name="currentPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword">
+                                </div>
+                                <button type="submit" class="settings-save-btn">Update Password</button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Notifications</h3>
+                            <div class="notification-settings">
+                                <div class="setting-toggle">
+                                    <span>Email notifications for completed videos</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-toggle">
+                                    <span>Email notifications for subscription renewals</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-toggle">
+                                    <span>Newsletter and product updates</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Video Generation Modal -->
+    <div class="modal" id="generationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Generating Your Video</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="generation-progress">
+                    <div class="progress-indicator">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="progress-status">
+                        <h4 id="generationStatus">Processing...</h4>
+                        <div class="progress-bar">
+                            <div class="progress" id="generationProgress" style="width: 35%"></div>
+                        </div>
+                        <p id="generationMessage">Your video is being generated with Veo AI. This may take a few minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/api.js"></script>
+</body>
+</html>
