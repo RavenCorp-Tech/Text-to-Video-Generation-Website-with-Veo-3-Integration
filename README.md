@@ -1,58 +1,40 @@
-# Text-to-Video-Generation-Website-with-Veo-3-Integration
-# VideoMagic: Text-to-Video AI Generator
+# VeoCreator: Text-to-Video AI Generator
 
-A web application that allows users to generate videos from text descriptions using Veo 3 AI models through Google's Flow labs.
+A powerful web application that leverages Google's Veo models to transform text prompts into high-quality videos.
 
 ## Features
 
-- Generate videos using Veo 3 Fast (4 per week) or Veo 3 Quality (1 per week)
-- User authentication system
-- Subscription management (₹99 per month or equivalent in local currency)
+- Text-to-video generation using Veo 3 models
+- Two quality options: "Veo 3 fast" and "Veo 3 quality"
+- User subscription system with usage limits
 - Credit-based system (950 credits per subscription)
 - Responsive design for all devices
 
-## Project Structure
+## Usage Limits
 
-```
-text-to-video-app/
-├── index.html
-├── pages/
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── subscription.html
-├── css/
-│   ├── style.css
-│   ├── responsive.css
-├── js/
-│   ├── app.js
-│   ├── auth.js
-│   ├── api.js
-│   ├── subscription.js
-├── assets/
-│   ├── images/
-│   ├── icons/
-```
+- **Veo 3 fast**: Up to 4 videos per week
+- **Veo 3 quality**: 1 video per week
+
+## Subscription
+
+- Price: ₹99 (INR) per month (auto-converted to local currency)
+- Each subscription includes 950 credits
+- Create stunning AI-generated videos with simple text prompts
+
+## Technology Stack
+
+- Frontend: HTML, CSS, JavaScript
+- Authentication: Firebase
+- Payment Processing: Stripe
+- Video Generation: Google Flow API (labs.google/flow)
 
 ## Getting Started
 
-1. Clone this repository
-2. Open `index.html` in your browser
-3. Sign up for an account
-4. Subscribe to access video generation features
-5. Start generating videos from text prompts!
+1. Clone the repository
+2. Set up environment variables
+3. Install dependencies
+4. Run the application
 
-## API Integration
+## License
 
-This application is designed to integrate with Google's Flow labs API for video generation. In a production environment, you would:
-
-1. Set up server-side authentication with the Flow API
-2. Implement secure API key management
-3. Handle API responses and errors appropriately
-
-## Subscription Details
-
-- Monthly subscription: ₹99 (or equivalent in local currency)
-- Each subscription provides 950 credits
-- Veo 3 Fast video: 50 credits each (limit 4 per week)
-- Veo 3 Quality video: 200 credits each (limit 1 per week)
+MIT License
