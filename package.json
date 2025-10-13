@@ -1,0 +1,41 @@
+{
+  "name": "veo-creator",
+  "version": "1.0.0",
+  "description": "Text-to-Video AI Generator using Gemini 2.5",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "check-keys": "node -e \"require('./key-rotation').generateRotationReport().then(console.log)\"",
+    "rotate-keys": "node scripts/rotate-keys.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RavenCorp-Tech/VeoCreator.git"
+  },
+  "keywords": [
+    "gemini",
+    "ai",
+    "video",
+    "generation"
+  ],
+  "author": "RavenCorp-Tech",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^9.18.0",
+    "firebase-admin": "^11.5.0",
+    "helmet": "^6.0.1",
+    "node-fetch": "^2.6.9",
+    "stripe": "^12.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

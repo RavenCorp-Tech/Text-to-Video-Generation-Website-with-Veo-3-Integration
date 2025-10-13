@@ -6,7 +6,35 @@
     <title>VeoCreator - Text to Video AI</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="futuristic-ui.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="price-announcement.css">
+    <link rel="stylesheet" href="auth-styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Firebase Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- Stripe for Payment -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="client-config.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="enhanced-auth.js" defer></script>
+    <script src="api.js" defer></script>
+    <script src="flow-animations.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="price-announcement.js" defer></script>
+    <script src="format-options.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -38,6 +66,15 @@
             </div>
         </nav>
     </header>
+
+    <!-- Price Reduction Banner -->
+    <div class="announcement-banner">
+        <div class="banner-content">
+            <span class="banner-icon">🎉</span>
+            <span class="banner-text"><strong>Exciting News!</strong> Veo 3 prices lowered by more than 45%! Now with vertical format and 1080p HD support.</span>
+            <a href="#pricing" class="banner-link">See New Pricing</a>
+        </div>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -92,6 +129,14 @@
         <!-- Pricing Section -->
         <section id="pricing" class="pricing">
             <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-highlight">
+                <span class="discount-badge">45% OFF</span>
+                <div class="price-comparison">
+                    <p><strong>New reduced pricing!</strong></p>
+                    <p>Veo 3: Now $0.40/second (was $0.75/second)</p>
+                    <p>Veo 3 Fast: Now $0.15/second (was $0.40/second)</p>
+                </div>
+            </div>
             <div class="pricing-card">
                 <h3>Premium Plan</h3>
                 <div class="price">
@@ -105,6 +150,8 @@
                     <li><i class="fas fa-check"></i> Up to 4 Veo 3 Fast videos weekly</li>
                     <li><i class="fas fa-check"></i> 1 Veo 3 Quality video weekly</li>
                     <li><i class="fas fa-check"></i> Download in multiple formats</li>
+                    <li><i class="fas fa-check"></i> <span class="new-feature">NEW!</span> Vertical format support</li>
+                    <li><i class="fas fa-check"></i> <span class="new-feature">NEW!</span> 1080p HD output</li>
                     <li><i class="fas fa-check"></i> Priority customer support</li>
                 </ul>
                 <button id="subscribeBtn" class="btn btn-primary">Subscribe Now</button>
@@ -129,6 +176,7 @@
                                 <label for="veoFast">
                                     <h4>Veo 3 Fast</h4>
                                     <p>Faster generation, good quality</p>
+                                    <p class="price-info">$0.15/second <span class="old-price">was $0.40/second</span></p>
                                     <p class="remaining">Remaining this week: <span id="fastRemaining">4</span></p>
                                 </label>
                             </div>
@@ -137,6 +185,7 @@
                                 <label for="veoQuality">
                                     <h4>Veo 3 Quality</h4>
                                     <p>Higher quality, longer processing</p>
+                                    <p class="price-info">$0.40/second <span class="old-price">was $0.75/second</span></p>
                                     <p class="remaining">Remaining this week: <span id="qualityRemaining">1</span></p>
                                 </label>
                             </div>
@@ -282,49 +331,149 @@
 
     <!-- Auth Modal -->
     <div id="authModal" class="modal hidden">
-        <div class="modal-content">
+        <div class="modal-content auth-container">
             <span class="close-btn" id="closeAuthModal">&times;</span>
             <div class="auth-tabs">
                 <button class="auth-tab active" data-tab="login">Log In</button>
                 <button class="auth-tab" data-tab="signup">Sign Up</button>
             </div>
+            
+            <!-- Login Form -->
             <div id="loginForm" class="auth-form active">
-                <h2>Welcome Back</h2>
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to VeoCreator</p>
+                </div>
+                
                 <div class="form-group">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                    <input type="email" id="loginEmail" placeholder="your@email.com" autocomplete="email">
+                    <div class="error-message" id="loginEmailError">Please enter a valid email address</div>
                 </div>
+                
                 <div class="form-group">
                     <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••">
+                    <div class="password-field">
+                        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+                        <button type="button" class="password-toggle" data-for="loginPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-message" id="loginPasswordError">Password is required</div>
                 </div>
+                
+                <div class="forgot-password">
+                    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+                
                 <div class="form-action">
                     <button id="doLoginBtn" class="btn btn-primary">Log In</button>
                 </div>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="social-login-btn" id="googleLoginBtn">
+                        <img src="assets/google-icon.svg" alt="Google">
+                        Google
+                    </button>
+                    <button class="social-login-btn" id="githubLoginBtn">
+                        <img src="assets/github-icon.svg" alt="GitHub">
+                        GitHub
+                    </button>
+                </div>
+                
                 <p class="auth-switch">Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
             </div>
+            
+            <!-- Signup Form -->
             <div id="signupForm" class="auth-form">
-                <h2>Create Account</h2>
+                <div class="auth-header">
+                    <h2>Create Account</h2>
+                    <p>Join VeoCreator to start creating videos</p>
+                </div>
+                
                 <div class="form-group">
                     <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" placeholder="John Doe">
+                    <input type="text" id="signupName" placeholder="John Doe" autocomplete="name">
+                    <div class="error-message" id="signupNameError">Please enter your name</div>
                 </div>
+                
                 <div class="form-group">
                     <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" placeholder="your@email.com">
+                    <input type="email" id="signupEmail" placeholder="your@email.com" autocomplete="email">
+                    <div class="error-message" id="signupEmailError">Please enter a valid email address</div>
                 </div>
+                
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" placeholder="••••••••">
+                    <div class="password-field">
+                        <input type="password" id="signupPassword" placeholder="••••••••" autocomplete="new-password">
+                        <button type="button" class="password-toggle" data-for="signupPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-message" id="signupPasswordError">Password must be at least 8 characters</div>
                 </div>
+                
                 <div class="form-group">
                     <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" placeholder="••••••••">
+                    <div class="password-field">
+                        <input type="password" id="signupConfirmPassword" placeholder="••••••••" autocomplete="new-password">
+                        <button type="button" class="password-toggle" data-for="signupConfirmPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-message" id="signupConfirmPasswordError">Passwords don't match</div>
                 </div>
+                
                 <div class="form-action">
                     <button id="doSignupBtn" class="btn btn-primary">Create Account</button>
                 </div>
+                
+                <div class="auth-divider">
+                    <span>or sign up with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="social-login-btn" id="googleSignupBtn">
+                        <img src="assets/google-icon.svg" alt="Google">
+                        Google
+                    </button>
+                    <button class="social-login-btn" id="githubSignupBtn">
+                        <img src="assets/github-icon.svg" alt="GitHub">
+                        GitHub
+                    </button>
+                </div>
+                
                 <p class="auth-switch">Already have an account? <a href="#" id="switchToLogin">Log in</a></p>
+            </div>
+            
+            <!-- Password Reset Form -->
+            <div id="passwordResetForm" class="auth-form">
+                <div class="auth-header">
+                    <h2>Reset Password</h2>
+                    <p>Enter your email to receive a password reset link</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resetEmail">Email</label>
+                    <input type="email" id="resetEmail" placeholder="your@email.com">
+                    <div class="error-message" id="resetEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-action">
+                    <button id="doResetBtn" class="btn btn-primary">Send Reset Link</button>
+                </div>
+                
+                <p class="auth-switch">Remember your password? <a href="#" id="backToLogin">Back to login</a></p>
+            </div>
+            
+            <!-- Auth Loading Overlay -->
+            <div class="auth-loading" id="authLoading">
+                <div class="spinner"></div>
             </div>
         </div>
     </div>
@@ -367,12 +516,6 @@
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    <script src="auth.js"></script>
-    <script src="api.js"></script>
     <script src="dashboard.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>

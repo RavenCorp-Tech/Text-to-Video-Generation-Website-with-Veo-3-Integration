@@ -1,0 +1,192 @@
+/* Announcement Banner */
+.announcement-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 12px 0;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.announcement-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-30deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+.banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 20px;
+}
+
+.banner-icon {
+    font-size: 24px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.banner-text {
+    font-size: 15px;
+}
+
+.banner-link {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.banner-link:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Pricing Highlight */
+.pricing-highlight {
+    background-color: rgba(255, 138, 91, 0.1);
+    border-left: 4px solid var(--accent-color);
+    padding: 12px 20px;
+    margin-bottom: 30px;
+    border-radius: var(--border-radius-md);
+    position: relative;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.price-comparison {
+    padding: 5px 0;
+}
+
+.price-comparison p {
+    font-size: 16px;
+    color: var(--text-dark);
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.price-comparison p:first-child {
+    margin-bottom: 12px;
+}
+
+.discount-badge {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+}
+
+/* New Feature Badge */
+.new-feature {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* Price Info in Model Selection */
+.price-info {
+    font-size: 14px;
+    color: var(--success-color);
+    margin-top: 4px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: var(--text-lightest);
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+/* Banner Dismiss Button */
+.banner-dismiss {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 8px;
+    margin-left: 10px;
+    transition: all 0.2s ease;
+}
+
+.banner-dismiss:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+/* Highlight Animation for Scrolling */
+@keyframes highlight-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 138, 91, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 138, 91, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 138, 91, 0); }
+}
+
+.highlight-element {
+    animation: highlight-pulse 1.5s ease-out;
+}
+
+/* Banner Animation */
+.announcement-banner {
+    transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+}
+
+/* Pricing Highlight Hover Effect */
+.pricing-highlight {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .banner-text {
+        font-size: 13px;
+    }
+    
+    .banner-icon {
+        font-size: 20px;
+    }
+    
+    .banner-link {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+    
+    .pricing-highlight p {
+        font-size: 14px;
+    }
+}
